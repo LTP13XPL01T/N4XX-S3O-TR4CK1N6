@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAXX-SEO-VVIP</title>
+    <meta name="theme-color" content="#000000">
+    <style>
+        :root {
+            --bg: #000000;
+            --card: #111111;
+            --text: #ffffff;
+            --neon-green: #00ff41;
+            --neon-red: #ff0040;
+            --neon-blue: #00bfff;
+            --neon-yellow: #ffd700;
+            --neon-purple: #8a2be2;
+            --neon-pink: #ff00ff;
+            --neon-orange: #ff6600;
+            --shadow: 0 0 15px currentColor;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.4;
+            overflow-x: hidden;
+            min-height: 100vh;
+            text-transform: uppercase;
+            position: relative;
+        }
+        
+        /* Particle Network Background */
+        #particle-network {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #000000;
+        }
+        
+        .container {
+            max-width: 100%;
+            padding: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Audio Permission Button */
+        .audio-permission {
+            background: var(--neon-purple);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin: 10px 0;
+            cursor: pointer;
+            border: 1px solid var(--neon-purple);
+            font-size: 12px;
+        }
+        
+        /* ASCII ART BANNER */
+        .ascii-art {
+            font-size: 5px;
+            line-height: 1;
+            white-space: pre;
+            text-align: center;
+            background: linear-gradient(45deg, var(--neon-green), var(--neon-blue), var(--neon-purple), var(--neon-pink), var(--neon-orange));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: rainbow 3s linear infinite;
+            margin: 10px 0;
+            text-shadow: var(--shadow);
+            font-weight: bold;
+        }
+        
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+        
+        /* CONTROLS */
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            margin: 10px 0;
+        }
+        
+        .control-btn {
+            padding: 8px 5px;
+            background: var(--card);
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            box-shadow: var(--shadow);
+            transform: translateY(-2px);
+        }
+        
+        /* NAVIGATION */
+        .nav {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            margin: 10px 0;
+        }
+        
+        .nav-btn {
+            padding: 10px 5px;
+            background: var(--card);
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn.active {
+            background: var(--neon-blue);
+            color: #000000;
+            box-shadow: var(--shadow);
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        /* SECTIONS */
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        /* TOOL CARDS */
+        .tool-card {
+            background: var(--card);
+            padding: 15px;
+            border: 2px solid var(--neon-blue);
+            border-radius: 8px;
+            margin: 10px 0;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+        
+        .tool-title {
+            color: var(--neon-green);
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .tool-desc {
+            color: var(--neon-yellow);
+            font-size: 11px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        /* INPUT STYLES */
+        .input-group {
+            margin-bottom: 10px;
+        }
+        
+        .input-label {
+            color: var(--neon-blue);
+            font-size: 11px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 8px;
+            background: #222222;
+            border: 1px solid var(--neon-blue);
+            border-radius: 4px;
+            color: var(--text);
+            font-size: 12px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: var(--neon-green);
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+        
+        .file-input {
+            width: 100%;
+            padding: 15px;
+            background: #222222;
+            color: var(--neon-yellow);
+            border: 2px dashed var(--neon-blue);
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 11px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .file-input:hover {
+            background: #333333;
+            border-color: var(--neon-green);
+        }
+        
+        /* BUTTONS */
+        .btn {
+            padding: 10px 15px;
+            background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+            color: #000000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+            margin: 5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            box-shadow: var(--shadow);
+            transform: translateY(-2px);
+        }
+        
+        .btn-red {
+            background: var(--neon-red);
+            color: #ffffff;
+        }
+        
+        .btn-purple {
+            background: var(--neon-purple);
+            color: #ffffff;
+        }
+        
+        /* LOADING ANIMATION */
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 15px 0;
+        }
+        
+        .neon-loader {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 3px solid transparent;
+            border-top: 3px solid var(--neon-green);
+            border-right: 3px solid var(--neon-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            box-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-blue);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); filter: hue-rotate(0deg); }
+            100% { transform: rotate(360deg); filter: hue-rotate(360deg); }
+        }
+        
+        /* PROGRESS BAR */
+        .progress-container {
+            margin: 10px 0;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #222222;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-green), var(--neon-blue));
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        /* STATS */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin: 15px 0;
+        }
+        
+        .stat-card {
+            background: var(--card);
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            border: 1px solid var(--neon-blue);
+            backdrop-filter: blur(5px);
+        }
+        
+        .stat-label {
+            font-size: 9px;
+            color: var(--neon-yellow);
+        }
+        
+        .stat-value {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--neon-green);
+        }
+        
+        /* OUTPUT */
+        .output {
+            background: var(--card);
+            padding: 12px;
+            border-radius: 6px;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid var(--neon-blue);
+            font-size: 11px;
+            margin: 10px 0;
+            backdrop-filter: blur(5px);
+        }
+        
+        .output-line {
+            padding: 5px;
+            margin-bottom: 3px;
+            border-radius: 3px;
+            border-left: 3px solid var(--neon-blue);
+            background: rgba(0, 255, 65, 0.1);
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .output-line.success {
+            border-left-color: var(--neon-green);
+            background: rgba(0, 255, 65, 0.2);
+        }
+        
+        .output-line.error {
+            border-left-color: var(--neon-red);
+            background: rgba(255, 0, 64, 0.2);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        /* RULES BOX */
+        .rules-box {
+            background: rgba(255, 0, 64, 0.1);
+            border: 1px solid var(--neon-red);
+            border-radius: 6px;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 10px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .rules-title {
+            color: var(--neon-red);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .rules-list {
+            list-style: none;
+        }
+        
+        .rules-list li {
+            margin-bottom: 3px;
+            color: var(--neon-yellow);
+        }
+        
+        /* COMBO PACKAGE */
+        .combo-package {
+            background: var(--card);
+            padding: 15px;
+            border: 2px solid var(--neon-purple);
+            border-radius: 8px;
+            margin: 15px 0;
+            backdrop-filter: blur(5px);
+        }
+        
+        .combo-title {
+            color: var(--neon-purple);
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .combo-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 8px;
+        }
+        
+        .combo-step {
+            background: #222222;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid var(--neon-blue);
+            text-align: center;
+        }
+        
+        .combo-day {
+            color: var(--neon-green);
+            font-size: 10px;
+            font-weight: bold;
+        }
+        
+        .combo-action {
+            color: var(--neon-yellow);
+            font-size: 9px;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .controls {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .combo-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Network Background -->
+    <canvas id="particle-network"></canvas>
+    
+    <div class="container">
+        <!-- HEADER -->
+        <div class="ascii-art" id="asciiBanner">
+███╗░░██╗░█████╗░██╗░░██╗██╗░░██╗░░░░░░██╗░░░██╗██╗░░░██╗██╗██████╗░
+████╗░██║██╔══██╗╚██╗██╔╝╚██╗██╔╝░░░░░░██║░░░██║██║░░░██║██║██╔══██╗
+██╔██╗██║███████║░╚███╔╝░░╚███╔╝░█████╗╚██╗░██╔╝╚██╗░██╔╝██║██████╔╝
+██║╚████║██╔══██║░██╔██╗░░██╔██╗░╚════╝░╚████╔╝░░╚████╔╝░██║██╔═══╝░
+██║░╚███║██║░░██║██╔╝╚██╗██╔╝╚██╗░░░░░░░░╚██╔╝░░░░╚██╔╝░░██║██║░░░░░
+╚═╝░░╚══╝╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝░░░░░░░░░╚═╝░░░░░░╚═╝░░░╚═╝╚═╝░░░░░ 
+        </div>
+
+        <!-- Audio Permission Button -->
+        <div class="audio-permission" id="audioPermission">
+            🔊 KLIK DISINI UNTUK AKTIFKAN SOUND EFFECTS (SUARA LEMBUT) 🔊
+        </div>
+
+        <!-- CONTROLS -->
+        <div class="controls">
+            <button class="control-btn" onclick="toggleSound()">🔊 SOUND: ON</button>
+            <button class="control-btn" onclick="toggleTheme()">🌙 DARK MODE</button>
+            <button class="control-btn" onclick="exportResults()">💾 EXPORT DATA</button>
+            <button class="control-btn" onclick="showAllTools()">🔍 ALL TOOLS</button>
+        </div>
+
+        <!-- NAVIGATION -->
+        <div class="nav">
+            <button class="nav-btn active" onclick="showSection('backlinks')">AUTO BACKLINKS</button>
+            <button class="nav-btn" onclick="showSection('tebas-index')">TEBAS INDEX</button>
+            <button class="nav-btn" onclick="showSection('rank-seo')">NAIK RANK SEO</button>
+        </div>
+
+        <!-- AUTO BACKLINKS SECTION -->
+        <div id="backlinks" class="section active">
+            <div class="tool-card">
+                <div class="tool-title">AUTO BACKLINKS</div>
+                <div class="tool-desc">BUAT RIBUAN BACKLINK OTOMATIS DALAM 1 KLIK</div>
+                
+                <div class="input-group">
+                    <label class="input-label">TARGET URL:</label>
+                    <input type="url" class="input-field" id="backlinkUrl" placeholder="HTTPS://WEBSITEKAMU.COM" onkeypress="playTypeSound()">
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">JUMLAH BACKLINK (MAX 800):</label>
+                    <input type="number" class="input-field" id="backlinkCount" value="200" min="1" max="800" onkeypress="playTypeSound()">
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">TEMPLATE KOMENTAR:</label>
+                    <input type="text" class="input-field" id="commentTemplate" value="BAGUS BANGET! KUNJUNGI {URL} UNTUK INFO LEBIH LANJUT" onkeypress="playTypeSound()">
+                </div>
+                
+                <div class="rules-box">
+                    <div class="rules-title">RULES PENGGUNAAN (WAJIB DIPATUHI!):</div>
+                    <ul class="rules-list">
+                        <li>✓ MAX 800 BACKLINK/HARI → LEBIH = BAN</li>
+                        <li>✓ GUNAKAN PROXY RESIDENTIAL (BUKAN DATACENTER)</li>
+                        <li>✓ SPIN TEKS MINIMAL 70% UNIK</li>
+                        <li>✓ JANGAN PAKAI ANCHOR EXACT MATCH >10%</li>
+                        <li>✓ CEK BACKLINK TIAP 7 HARI → BANYAK YANG MATI</li>
+                        <li>✓ TARGET SITUS .GOV / .EDU</li>
+                    </ul>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="btn" onclick="startBacklinks()">🚀 JALANKAN AUTO BACKLINKS</button>
+                    <button class="btn btn-red" onclick="stopProcess()">⏹️ STOP PROCESS</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AUTO TEBAS INDEX SECTION -->
+        <div id="tebas-index" class="section">
+            <div class="tool-card">
+                <div class="tool-title">AUTO TEBAS INDEX</div>
+                <div class="tool-desc">PORSA GOOGLE INDEX HALAMAN DALAM 5 MENIT</div>
+                
+                <div class="file-input" onclick="document.getElementById('urlFile').click()">
+                    📁 UPLOAD FILE URL (MAX 100 URL) - FORMAT: SATU URL PER BARIS
+                </div>
+                <input type="file" id="urlFile" accept=".txt" style="display: none;" onchange="handleUrlFileUpload(event)">
+                
+                <div class="input-group">
+                    <label class="input-label">ATAU INPUT URL MANUAL:</label>
+                    <input type="text" class="input-field" id="manualUrl" placeholder="HTTPS://WEBSITEKAMU.COM/PAGE" onkeypress="playTypeSound()">
+                </div>
+                
+                <div class="rules-box">
+                    <div class="rules-title">RULES PENGGUNAAN:</div>
+                    <ul class="rules-list">
+                        <li>✓ MAX 100 URL/HARI PER DOMAIN</li>
+                        <li>✓ DELAY 5 DETIK ANTAR SUBMIT</li>
+                        <li>✓ JANGAN SUBMIT URL DUPLIKAT</li>
+                        <li>✓ CEK INDEX VIA GOOGLE → "SITE:URL"</li>
+                        <li>✓ JANGAN SPAM GSC → AKUN BISA SUSPEND</li>
+                    </ul>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="btn" onclick="startTebasIndex()">🚀 JALANKAN TEBAS INDEX</button>
+                    <button class="btn btn-red" onclick="stopProcess()">⏹️ STOP PROCESS</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AUTO NAIKIN RANK SEO SECTION -->
+        <div id="rank-seo" class="section">
+            <div class="tool-card">
+                <div class="tool-title">AUTO NAIKIN RANK SEO</div>
+                <div class="tool-desc">NAIKKAN RANKING KEYWORD DARI HALAMAN 5 → HALAMAN 1</div>
+                
+                <div class="input-group">
+                    <label class="input-label">DOMAIN TARGET:</label>
+                    <input type="url" class="input-field" id="rankDomain" placeholder="HTTPS://WEBSITEKAMU.COM" onkeypress="playTypeSound()">
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">KEYWORD TARGET (MAX 2):</label>
+                    <input type="text" class="input-field" id="keyword1" placeholder="KEYWORD UTAMA" onkeypress="playTypeSound()">
+                    <input type="text" class="input-field" id="keyword2" placeholder="KEYWORD KEDUA (OPSIONAL)" onkeypress="playTypeSound()" style="margin-top: 5px;">
+                </div>
+                
+                <div class="combo-package">
+                    <div class="combo-title">PAKET KOMBO AMAN (COPY INI!):</div>
+                    <div class="combo-steps">
+                        <div class="combo-step">
+                            <div class="combo-day">HARI 1-3</div>
+                            <div class="combo-action">AUTO TEBAS INDEX (100 URL)</div>
+                        </div>
+                        <div class="combo-step">
+                            <div class="combo-day">HARI 4-7</div>
+                            <div class="combo-action">AUTO BACKLINKS TIER 3 (2000 LINK)</div>
+                        </div>
+                        <div class="combo-step">
+                            <div class="combo-day">HARI 8-14</div>
+                            <div class="combo-action">AUTO BACKLINKS TIER 2 (500 LINK)</div>
+                        </div>
+                        <div class="combo-step">
+                            <div class="combo-day">HARI 15</div>
+                            <div class="combo-action">POST KE 10 PBN (TIER 1)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rules-box">
+                    <div class="rules-title">RISIKO (BACA INI DULU!):</div>
+                    <ul class="rules-list">
+                        <li>✓ GOOGLE BISA DEINDEX TOTAL</li>
+                        <li>✓ PBN KENA DMCA</li>
+                        <li>✓ AKUN GSC SUSPEND</li>
+                        <li>→ GUNAKAN HANYA DI DOMAIN SANDAL/JANGKA</li>
+                    </ul>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="btn btn-purple" onclick="startRankBoost()">🚀 JALANKAN RANK BOOSTER</button>
+                    <button class="btn" onclick="runComboPackage()">📦 JALANKAN PAKET KOMBO</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOADING -->
+        <div class="loading" id="loading">
+            <div class="neon-loader"></div>
+            <div style="margin-top: 10px; color: var(--neon-green);">PROSES SEDANG BERJALAN...</div>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div style="text-align: center; margin-top: 5px; font-size: 10px; color: var(--neon-yellow);">
+                    STATUS: <span id="progressText">MEMULAI...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-label">PROSES</div>
+                <div class="stat-value" id="statProcessed">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">SUKSES</div>
+                <div class="stat-value" id="statSuccess">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">GAGAL</div>
+                <div class="stat-value" id="statFailed">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">WAKTU</div>
+                <div class="stat-value" id="statTime">0S</div>
+            </div>
+        </div>
+
+        <!-- OUTPUT -->
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        // Particle Network Background
+        class ParticleNetwork {
+            constructor() {
+                this.canvas = document.getElementById('particle-network');
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.mouse = { x: 0, y: 0, radius: 100 };
+                
+                this.init();
+                this.animate();
+                
+                window.addEventListener('resize', () => this.init());
+                this.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+            }
+            
+            init() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+                
+                this.particles = [];
+                const particleCount = Math.min(100, Math.floor(window.innerWidth * window.innerHeight / 10000));
+                
+                for (let i = 0; i < particleCount; i++) {
+                    this.particles.push(new Particle(this.canvas.width, this.canvas.height));
+                }
+            }
+            
+            handleMouseMove(e) {
+                this.mouse.x = e.clientX;
+                this.mouse.y = e.clientY;
+            }
+            
+            animate() {
+                this.ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                for (let particle of this.particles) {
+                    particle.update(this.mouse, this.particles, this.ctx);
+                    particle.draw(this.ctx);
+                }
+                
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+        
+        class Particle {
+            constructor(width, height) {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.color = this.getRandomNeonColor();
+                this.originalColor = this.color;
+            }
+            
+            getRandomNeonColor() {
+                const colors = [
+                    '#00ff41', // neon green
+                    '#00bfff', // neon blue  
+                    '#ff00ff', // neon pink
+                    '#ffd700', // neon yellow
+                    '#8a2be2', // neon purple
+                    '#ff0040', // neon red
+                    '#ff6600'  // neon orange
+                ];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+            
+            update(mouse, particles, ctx) {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                // Bounce off walls
+                if (this.x <= 0 || this.x >= ctx.canvas.width) this.speedX *= -1;
+                if (this.y <= 0 || this.y >= ctx.canvas.height) this.speedY *= -1;
+                
+                // Mouse interaction
+                const dx = mouse.x - this.x;
+                const dy = mouse.y - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < mouse.radius) {
+                    this.speedX = dx * 0.05;
+                    this.speedY = dy * 0.05;
+                    this.color = '#ffffff';
+                } else {
+                    this.color = this.originalColor;
+                }
+                
+                // Draw connections
+                this.drawConnections(particles, ctx);
+            }
+            
+            drawConnections(particles, ctx) {
+                for (let particle of particles) {
+                    const dx = this.x - particle.x;
+                    const dy = this.y - particle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = this.color + Math.min(0.3, (100 - distance) / 300).toString();
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(this.x, this.y);
+                        ctx.lineTo(particle.x, particle.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+            draw(ctx) {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                
+                // Glow effect
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+                ctx.fillStyle = this.color + '20';
+                ctx.fill();
+            }
+        }
+        
+        // Sound Effects System - Soft Gentle Sounds
+        let soundEnabled = false;
+        let currentProcess = null;
+        let startTime = null;
+        let audioContext = null;
+        
+        // Create soft, gentle sounds
+        function createSoftSound(frequency, duration, volume = 0.1, type = 'sine') {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            
+            return new Promise((resolve) => {
+                try {
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.value = frequency;
+                    oscillator.type = type;
+                    
+                    // Very low volume for gentle sounds
+                    gainNode.gain.setValueAtTime(volume, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
+                    
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.stop(audioContext.currentTime + duration);
+                    
+                    oscillator.onended = () => resolve();
+                } catch (e) {
+                    console.log('Audio error:', e);
+                    resolve();
+                }
+            });
+        }
+        
+        // Soft sound effects functions
+        function playClickSound() {
+            if (!soundEnabled) return;
+            createSoftSound(523.25, 0.08, 0.08, 'sine'); // C5 - very gentle
+        }
+        
+        function playTypeSound() {
+            if (!soundEnabled) return;
+            createSoftSound(659.25, 0.04, 0.05, 'sine'); // E5 - very short and soft
+        }
+        
+        function playSuccessSound() {
+            if (!soundEnabled) return;
+            // Gentle ascending tones
+            createSoftSound(523.25, 0.1, 0.1, 'sine')
+                .then(() => createSoftSound(659.25, 0.1, 0.1, 'sine'))
+                .then(() => createSoftSound(783.99, 0.15, 0.1, 'sine'));
+        }
+        
+        function playErrorSound() {
+            if (!soundEnabled) return;
+            // Gentle descending tone
+            createSoftSound(392.00, 0.2, 0.1, 'sine') // G4
+                .then(() => createSoftSound(329.63, 0.15, 0.08, 'sine')); // E4
+        }
+        
+        function playProcessSound() {
+            if (!soundEnabled) return;
+            // Very soft ticking sound
+            createSoftSound(261.63, 0.06, 0.04, 'sine'); // C4
+        }
+        
+        // Enable audio on user interaction
+        function enableAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            
+            // Create a silent sound to unlock audio
+            const buffer = audioContext.createBuffer(1, 1, 22050);
+            const source = audioContext.createBufferSource();
+            source.buffer = buffer;
+            source.connect(audioContext.destination);
+            source.start();
+            
+            soundEnabled = true;
+            document.getElementById('audioPermission').style.display = 'none';
+            addOutput('🔊 SOUND EFFECTS LEMBUT DIHIDUPKAN', 'success');
+            
+            // Update button text
+            const soundBtn = document.querySelector('.control-btn');
+            if (soundBtn) {
+                soundBtn.textContent = '🔊 SOUND: ON';
+            }
+            
+            // Test gentle sound
+            createSoftSound(523.25, 0.1, 0.08, 'sine');
+        }
+        
+        // Toggle sound
+        function toggleSound() {
+            if (!soundEnabled) {
+                enableAudio();
+                return;
+            }
+            
+            soundEnabled = !soundEnabled;
+            const btn = event.target;
+            btn.textContent = soundEnabled ? '🔊 SOUND: ON' : '🔇 SOUND: OFF';
+            addOutput(soundEnabled ? '🔊 SOUND EFFECTS DIHIDUPKAN' : '🔇 SOUND EFFECTS DIMATIKAN', 'success');
+            
+            if (soundEnabled) {
+                playClickSound();
+            }
+        }
+        
+        // Show audio permission notice
+        function showAudioPermission() {
+            setTimeout(() => {
+                const permissionElement = document.getElementById('audioPermission');
+                if (permissionElement) {
+                    permissionElement.style.display = 'block';
+                    permissionElement.addEventListener('click', enableAudio);
+                }
+            }, 1000);
+        }
+        
+        // Toggle theme
+        function toggleTheme() {
+            playClickSound();
+            const body = document.body;
+            const isDark = body.style.backgroundColor === 'rgb(240, 240, 240)';
+            
+            if (isDark) {
+                body.style.backgroundColor = '#000000';
+                body.style.color = '#ffffff';
+                event.target.textContent = '🌙 DARK MODE';
+            } else {
+                body.style.backgroundColor = '#f0f0f0';
+                body.style.color = '#000000';
+                event.target.textContent = '☀️ LIGHT MODE';
+            }
+        }
+        
+        // Show section
+        function showSection(sectionId) {
+            playClickSound();
+            
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        // Add output
+        function addOutput(message, type = '') {
+            const output = document.getElementById('output');
+            const div = document.createElement('div');
+            div.className = `output-line ${type}`;
+            div.textContent = message;
+            output.appendChild(div);
+            output.scrollTop = output.scrollHeight;
+            
+            if (type === 'success') {
+                playSuccessSound();
+            } else if (type === 'error') {
+                playErrorSound();
+            }
+        }
+        
+        // Update stats
+        function updateStats(processed, success, failed) {
+            document.getElementById('statProcessed').textContent = processed;
+            document.getElementById('statSuccess').textContent = success;
+            document.getElementById('statFailed').textContent = failed;
+            
+            if (startTime) {
+                const currentTime = new Date();
+                const elapsedSeconds = Math.floor((currentTime - startTime) / 1000);
+                document.getElementById('statTime').textContent = elapsedSeconds + 'S';
+            }
+        }
+        
+        // Update progress
+        function updateProgress(percent, text) {
+            document.getElementById('progressFill').style.width = percent + '%';
+            document.getElementById('progressText').textContent = text;
+        }
+        
+        // Show loading
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            startTime = new Date();
+            updateStats(0, 0, 0);
+            updateProgress(0, 'MEMULAI PROSES...');
+        }
+        
+        // Hide loading
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+            playSuccessSound();
+        }
+        
+        // AUTO BACKLINKS
+        function startBacklinks() {
+            playClickSound();
+            const url = document.getElementById('backlinkUrl').value;
+            const count = parseInt(document.getElementById('backlinkCount').value);
+            
+            if (!url) {
+                addOutput('❌ ERROR: MASUKKAN URL TARGET!', 'error');
+                playErrorSound();
+                return;
+            }
+            
+            if (count > 800) {
+                addOutput('❌ ERROR: MAX 800 BACKLINK/HARI!', 'error');
+                playErrorSound();
+                return;
+            }
+            
+            showLoading();
+            addOutput('🚀 MEMULAI AUTO BACKLINKS...', 'success');
+            addOutput(`🎯 TARGET: ${url}`, 'success');
+            addOutput(`📊 JUMLAH: ${count} BACKLINKS`, 'success');
+            
+            let processed = 0;
+            let success = 0;
+            let failed = 0;
+            
+            currentProcess = setInterval(() => {
+                processed += 5;
+                if (processed > count) processed = count;
+                
+                // Simulate random success/failure
+                const random = Math.random();
+                if (random > 0.3) {
+                    success++;
+                    addOutput(`✅ BACKLINK ${success}: SITE${success}.COM → ${url}`, 'success');
+                } else {
+                    failed++;
+                    addOutput(`❌ GAGAL: SITE${failed}.COM - CAPTCHA/BLOCKED`, 'error');
+                }
+                
+                updateStats(processed, success, failed);
+                updateProgress((processed / count) * 100, `MEMBUAT BACKLINK ${processed}/${count}`);
+                
+                playProcessSound();
+                
+                if (processed >= count) {
+                    clearInterval(currentProcess);
+                    hideLoading();
+                    addOutput(`🎉 AUTO BACKLINKS SELESAI! SUKSES: ${success}, GAGAL: ${failed}`, 'success');
+                    addOutput('⏰ BACKLINK AKTIF DALAM 24-48 JAM', 'success');
+                }
+            }, 500);
+        }
+        
+        // AUTO TEBAS INDEX
+        function startTebasIndex() {
+            playClickSound();
+            showLoading();
+            addOutput('🚀 MEMULAI AUTO TEBAS INDEX...', 'success');
+            
+            let processed = 0;
+            let success = 0;
+            let failed = 0;
+            const total = 100;
+            
+            currentProcess = setInterval(() => {
+                processed += 2;
+                if (processed > total) processed = total;
+                
+                const random = Math.random();
+                if (random > 0.2) {
+                    success++;
+                    addOutput(`✅ URL ${success}: TERINDEX DI GOOGLE`, 'success');
+                } else {
+                    failed++;
+                    addOutput(`❌ URL ${failed}: GAGAL INDEX - CRAWL DELAY`, 'error');
+                }
+                
+                updateStats(processed, success, failed);
+                updateProgress((processed / total) * 100, `SUBMIT URL ${processed}/${total}`);
+                
+                playProcessSound();
+                
+                if (processed >= total) {
+                    clearInterval(currentProcess);
+                    hideLoading();
+                    addOutput(`🎉 TEBAS INDEX SELESAI! ${success} URL TERINDEX`, 'success');
+                    addOutput('🔍 CEK: SITE:WEBSITEKAMU.COM DI GOOGLE', 'success');
+                }
+            }, 800);
+        }
+        
+        // AUTO RANK BOOST
+        function startRankBoost() {
+            playClickSound();
+            const domain = document.getElementById('rankDomain').value;
+            const keyword1 = document.getElementById('keyword1').value;
+            
+            if (!domain || !keyword1) {
+                addOutput('❌ ERROR: MASUKKAN DOMAIN DAN KEYWORD!', 'error');
+                playErrorSound();
+                return;
+            }
+            
+            showLoading();
+            addOutput('🚀 MEMULAI AUTO RANK BOOST...', 'success');
+            addOutput(`🎯 DOMAIN: ${domain}`, 'success');
+            addOutput(`🔑 KEYWORD: ${keyword1}`, 'success');
+            
+            let processed = 0;
+            let success = 0;
+            let failed = 0;
+            const total = 100;
+            
+            currentProcess = setInterval(() => {
+                processed += 3;
+                if (processed > total) processed = total;
+                
+                const random = Math.random();
+                if (random > 0.25) {
+                    success++;
+                    
+                    if (success <= 10) {
+                        addOutput(`✅ TIER 1: PBN${success}.COM → ${domain}`, 'success');
+                    } else if (success <= 40) {
+                        addOutput(`✅ TIER 2: WEB2.0-${success}.COM → PBN`, 'success');
+                    } else {
+                        addOutput(`✅ TIER 3: FORUM${success}.COM → WEB2.0`, 'success');
+                    }
+                } else {
+                    failed++;
+                    addOutput(`❌ GAGAL: LINK ${failed} - SPAM FILTER`, 'error');
+                }
+                
+                updateStats(processed, success, failed);
+                updateProgress((processed / total) * 100, `MEMBANGUN LINK ${processed}/${total}`);
+                
+                playProcessSound();
+                
+                if (processed >= total) {
+                    clearInterval(currentProcess);
+                    hideLoading();
+                    addOutput(`🎉 RANK BOOST SELESAI! ${success} LINK BERHASIL`, 'success');
+                    addOutput('📈 RANKING AKAN NAIK DALAM 14-30 HARI', 'success');
+                }
+            }, 600);
+        }
+        
+        // COMBO PACKAGE
+        function runComboPackage() {
+            playClickSound();
+            addOutput('📦 MEMULAI PAKET KOMBO 30 HARI...', 'success');
+            addOutput('📅 HARI 1-3: AUTO TEBAS INDEX (100 URL)', 'success');
+            addOutput('📅 HARI 4-7: AUTO BACKLINKS TIER 3 (2000 LINK)', 'success');
+            addOutput('📅 HARI 8-14: AUTO BACKLINKS TIER 2 (500 LINK)', 'success');
+            addOutput('📅 HARI 15: POST KE 10 PBN (TIER 1)', 'success');
+            addOutput('🎯 TARGET: RANKING NAIK 20-50 POSISI DALAM 30 HARI', 'success');
+        }
+        
+        // STOP PROCESS
+        function stopProcess() {
+            playClickSound();
+            if (currentProcess) {
+                clearInterval(currentProcess);
+                addOutput('⏹️ PROSES DIHENTIKAN MANUAL', 'error');
+                hideLoading();
+            }
+        }
+        
+        // EXPORT RESULTS
+        function exportResults() {
+            playClickSound();
+            const output = document.getElementById('output');
+            const lines = output.querySelectorAll('.output-line');
+            
+            if (lines.length === 0) {
+                addOutput('❌ TIDAK ADA DATA UNTUK DIEXPORT', 'error');
+                return;
+            }
+            
+            let content = 'NAXX-SEO-VVIP EXPORT DATA\n';
+            content += '========================\n\n';
+            
+            lines.forEach(line => {
+                content += line.textContent + '\n';
+            });
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'naxx-seo-results.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            addOutput('💾 DATA BERHASIL DIEXPORT KE FILE', 'success');
+        }
+        
+        // SHOW ALL TOOLS
+        function showAllTools() {
+            playClickSound();
+            addOutput('🔧 FITUR TOOLS YANG TERSEDIA:', 'success');
+            addOutput('• AUTO BACKLINKS - BUAT 2000+ BACKLINK OTOMATIS', 'success');
+            addOutput('• AUTO TEBAS INDEX - FORCE GOOGLE INDEXING', 'success');
+            addOutput('• AUTO RANK BOOST - NAIK RANKING KE HALAMAN 1', 'success');
+            addOutput('• COMBO PACKAGE - PAKET LENGKAP 30 HARI', 'success');
+        }
+        
+        // Handle file upload
+        function handleUrlFileUpload(event) {
+            playClickSound();
+            const file = event.target.files[0];
+            if (file) {
+                addOutput(`📁 FILE DIPILIH: ${file.name}`, 'success');
+                addOutput('✅ URL LIST BERHASIL DILOAD', 'success');
+            }
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Particle Network
+            new ParticleNetwork();
+            
+            addOutput('🚀 NAXX-SEO-VVIP READY!', 'success');
+            addOutput('💡 PILIH TOOLS DI ATAS UNTUK MEMULAI', 'success');
+            
+            // Show audio permission notice
+            showAudioPermission();
+            
+            // Enable audio on any click
+            document.addEventListener('click', function firstClick() {
+                if (!soundEnabled) {
+                    enableAudio();
+                }
+                document.removeEventListener('click', firstClick);
+            });
+        });
+    </script>
+</body>
+</html>
